@@ -1,3 +1,6 @@
+﻿/// <reference path="../angular.js" />
+
+
 angular.module("customFilters", [])
 .filter("unique", function () {
     return function (data, propertyName) {
@@ -19,7 +22,7 @@ angular.module("customFilters", [])
 })
 .filter("range", function ($filter) {
     return function (data, page, size) {
-        if (angular.isArray(data) &&angular.isNumber(page) &&angular.isNumber(size)) {
+        if (angular.isArray(data) && angular.isNumber(page) && angular.isNumber(size)) {
             var start_index = (page - 1) * size;
             if (data.length < start_index) {
                 return [];
@@ -45,17 +48,3 @@ angular.module("customFilters", [])
     }
 });
 
-angular.module("sportsStore")
-    .constant("dataUrl", "http://localhost:5500/products")
-    .controller("sportsStoreCtrl", function ($scope, $http, dataUrl) {
- 
-        $scope.data = {};
- 
-        $http.get(dataUrl)
-            .success(function (data) {
-                $scope.data.products = data;
-            })
-            .error(function (error) {
-                $scope.data.error = error;
-            });
-    });
